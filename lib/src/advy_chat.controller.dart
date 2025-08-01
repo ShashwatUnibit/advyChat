@@ -22,7 +22,7 @@ class AdvyChatController extends GetxController {
             child: Stack(
               children: [
                 InAppWebView(
-                  initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("https://chat-sdk.advy.me/"))),
+                  initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("https://chat-sdk.advy.me?userName=$userName&mobile=$mobileNumber"))),
                   onWebViewCreated: (controller) {
                     LoadingPage.show();
                     InAppWebViewController inAppWebViewController;
