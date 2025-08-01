@@ -28,11 +28,11 @@ class AdvyChatController extends GetxController {
       barrierDismissible: true,
       builder: (context) {
         return Dialog(
-          insetPadding: EdgeInsets.zero,
+          insetPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           backgroundColor: Colors.transparent,
           child: Stack(
             children: [
-              WebViewWidget(controller: webViewController),
+              // WebViewWidget(controller: webViewController),
               Positioned(
                 top: 40,
                 right: 20,
