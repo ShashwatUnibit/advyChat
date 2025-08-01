@@ -32,7 +32,7 @@ class AdvyChatController extends GetxController {
           backgroundColor: Colors.transparent,
           child: Stack(
             children: [
-              // WebViewWidget(controller: webViewController),
+              WebViewWidget(controller: webViewController),
               Positioned(
                 top: 40,
                 right: 20,
