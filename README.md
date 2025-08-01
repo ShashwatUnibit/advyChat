@@ -22,7 +22,7 @@ Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  advy_chat: ^1.0.2
+  advy_chat: ^1.0.3
   
 ```
 
