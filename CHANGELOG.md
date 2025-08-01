@@ -1,4 +1,4 @@
-## 1.0.3
+## 1.1.0
 
 - Refactored `AdvyWidget` to use a `StatelessWidget` with draggable functionality via `GetX`.
 - Improved customization: now uses colors, icon size, and border properties defined in the widget.
