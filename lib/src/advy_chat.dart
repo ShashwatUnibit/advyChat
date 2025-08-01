@@ -1,6 +1,6 @@
+import 'package:advy_chat/src/advy_chat.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:advy_chat/src/advy_chat.controller.dart';
 
 class AdvyWidget extends StatelessWidget {
   const AdvyWidget({super.key, required this.userName, required this.mobileNumber});
