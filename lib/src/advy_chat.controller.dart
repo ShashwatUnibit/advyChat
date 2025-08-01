@@ -44,23 +44,14 @@ class AdvyChatController extends GetxController {
   void updatePosition(Offset delta) {
     final context = Get.context;
     if (context == null) return;
-
     final mediaQuery = MediaQuery.of(context);
     final screenWidth = mediaQuery.size.width;
     final screenHeight = mediaQuery.size.height;
-
-    // Size of the draggable button
     const double buttonSize = 50;
-
-    // Padding constraints
     const double horizontalPadding = 10;
     const double verticalPadding = 70;
-
-    // New desired position
     final newX = (position.value.dx + delta.dx).clamp(horizontalPadding, screenWidth - buttonSize - horizontalPadding);
-
     final newY = (position.value.dy + delta.dy).clamp(verticalPadding, screenHeight - buttonSize - verticalPadding);
-
     position.value = Offset(newX, newY);
   }
 }
