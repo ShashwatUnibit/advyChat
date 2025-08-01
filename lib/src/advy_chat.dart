@@ -19,37 +19,32 @@ class AdvyWidget extends StatelessWidget {
     controller.mobileNumber = mobileNumber;
 
     return Obx(
-      () => Stack(
-        children: [
-          Positioned(
-            left: controller.position.value.dx,
-            top: controller.position.value.dy,
-            child: GestureDetector(
-              onPanUpdate: (details) {
-                controller.updatePosition(details.delta);
-              },
-              child: MaterialButton(
-                onPressed: controller.onButtonClick,
-                padding: EdgeInsets.zero,
-                visualDensity: VisualDensity.compact,
-                minWidth: 0,
-                splashColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                    color: buttonColor,
-                    border: Border.all(color: buttonBorderColor, width: borderWidth),
-                  ),
-                  child: Icon(Icons.chat, color: iconColor),
-                ),
+      () => Padding(
+        padding: EdgeInsetsGeometry.only(left: controller.position.value.dx, top: controller.position.value.dy),
+        child: GestureDetector(
+          onPanUpdate: (details) {
+            controller.updatePosition(details.delta);
+          },
+          child: MaterialButton(
+            onPressed: controller.onButtonClick,
+            padding: EdgeInsets.zero,
+            visualDensity: VisualDensity.compact,
+            minWidth: 0,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            child: Container(
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+                color: buttonColor,
+                border: Border.all(color: buttonBorderColor, width: borderWidth),
               ),
+              child: Icon(Icons.chat, color: iconColor),
             ),
           ),
-        ],
+        ),
       ),
     );
   }
