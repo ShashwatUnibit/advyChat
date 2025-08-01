@@ -6,33 +6,7 @@ class AdvyChatController extends GetxController {
   String userName = "UserName";
   String mobileNumber = "MobileNumber";
 
-  onButtonClick() {
-    showDialog(
-      context: Get.context!,
-      barrierDismissible: true, // optional: allows closing by tapping outside
-      builder: (context) {
-        return Dialog(
-          insetPadding: EdgeInsets.zero,
-          backgroundColor: Colors.transparent,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            color: Colors.white,
-            child: Stack(
-              children: [
-                Center(child: WebViewWidget(controller: webViewController)),
-                Positioned(
-                  top: 40,
-                  right: 20,
-                  child: IconButton(icon: const Icon(Icons.close, size: 30), onPressed: () => Navigator.of(context).pop()),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
+  Rx<Offset> position = const Offset(100, 100).obs;
 
   WebViewController webViewController = WebViewController()
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
@@ -47,4 +21,34 @@ class AdvyChatController extends GetxController {
       ),
     )
     ..loadRequest(Uri.parse('https://flutter.dev'));
+
+  void onButtonClick() {
+    showDialog(
+      context: Get.context!,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          insetPadding: EdgeInsets.zero,
+          backgroundColor: Colors.transparent,
+          child: Stack(
+            children: [
+              WebViewWidget(controller: webViewController),
+              Positioned(
+                top: 40,
+                right: 20,
+                child: IconButton(
+                  icon: const Icon(Icons.close, size: 30),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void updatePosition(Offset delta) {
+    position.value += delta;
+  }
 }
