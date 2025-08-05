@@ -12,7 +12,7 @@ class AdvyChatController extends GetxController {
 
   void onButtonClick() {
     if (productKey == "productKey" || productKey.isEmpty) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(content: Text("Sending Message")));
+      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(content: Text("Please provide the correct Product Key.", style: TextStyle(color: Colors.white),), backgroundColor: Color(0xFFF1616F),));
       return;
     }
     showDialog(

@@ -21,7 +21,7 @@ class AdvyWidget extends StatelessWidget {
     final AdvyChatController controller = Get.put(AdvyChatController());
     controller.userName = userName;
     controller.mobileNumber = mobileNumber;
-
+    controller.productKey = productKey;
     return Obx(
       () => Padding(
         padding: EdgeInsetsGeometry.only(left: controller.position.value.dx, top: controller.position.value.dy),
