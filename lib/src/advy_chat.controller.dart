@@ -8,11 +8,16 @@ class AdvyChatController extends GetxController {
   String mobileNumber = "MobileNumber";
   String productKey = "productKey";
 
-  Rx<Offset> position = const Offset(100, 100).obs;
+  Rx<Offset> position = Offset(Get.width - 65, Get.height - 130).obs;
 
   void onButtonClick() {
     if (productKey == "productKey" || productKey.isEmpty) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(content: Text("Please provide the correct Product Key.", style: TextStyle(color: Colors.white),), backgroundColor: Color(0xFFF1616F),));
+      ScaffoldMessenger.of(Get.context!).showSnackBar(
+        const SnackBar(
+          content: Text("Please provide the correct Product Key.", style: TextStyle(color: Colors.white)),
+          backgroundColor: Color(0xFFF1616F),
+        ),
+      );
       return;
     }
     showDialog(
@@ -21,24 +26,29 @@ class AdvyChatController extends GetxController {
       builder: (context) {
         return Dialog(
           backgroundColor: Colors.transparent,
+          insetPadding: EdgeInsets.zero,
           child: Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15)), color: Colors.white),
             child: Stack(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 30),
+                  padding: const EdgeInsets.only(top: 30, bottom: 15),
                   child: InAppWebView(
                     initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("http://192.168.1.43:5173/?productKey=$productKey&userName=$userName&mobile=$mobileNumber"))),
-                    onWebViewCreated: (controller) {
+                    onLoadStart: (controller, url) {
                       LoadingPage.show();
-                      InAppWebViewController;
+                    },
+                    onLoadStop: (controller, url) {
                       LoadingPage.close();
+                    },
+                    onWebViewCreated: (controller) {
+                      InAppWebViewController;
                     },
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 15),
-                  child: IconButton(icon: const Icon(Icons.arrow_back_ios, size: 25), onPressed: () => Navigator.of(context).pop()),
+                  padding: EdgeInsets.only(left: 10),
+                  child: IconButton(icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.of(context).pop()),
                 ),
               ],
             ),
