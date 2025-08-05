@@ -6,32 +6,39 @@ import 'package:get/get.dart';
 class AdvyChatController extends GetxController {
   String userName = "UserName";
   String mobileNumber = "MobileNumber";
+  String productKey = "productKey";
 
   Rx<Offset> position = const Offset(100, 100).obs;
 
   void onButtonClick() {
+    if (productKey == "productKey" || productKey.isEmpty) {
+      ScaffoldMessenger.of(Get.context!).showSnackBar(const SnackBar(content: Text("Sending Message")));
+      return;
+    }
     showDialog(
       context: Get.context!,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (context) {
         return Dialog(
-          insetPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           backgroundColor: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15)), color: Colors.white),
             child: Stack(
               children: [
-                InAppWebView(
-                  initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("https://chat-sdk.advy.me?userName=$userName&mobile=$mobileNumber"))),
-                  onWebViewCreated: (controller) {
-                    LoadingPage.show();
-                    InAppWebViewController;
-                    LoadingPage.close();
-                  },
+                Padding(
+                  padding: const EdgeInsets.only(top: 30),
+                  child: InAppWebView(
+                    initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("http://192.168.1.43:5173/?productKey=$productKey&userName=$userName&mobile=$mobileNumber"))),
+                    onWebViewCreated: (controller) {
+                      LoadingPage.show();
+                      InAppWebViewController;
+                      LoadingPage.close();
+                    },
+                  ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 10, left: MediaQuery.of(context).size.width - 60),
-                  child: IconButton(icon: const Icon(Icons.close, size: 30), onPressed: () => Navigator.of(context).pop()),
+                  padding: EdgeInsets.only(left: 15),
+                  child: IconButton(icon: const Icon(Icons.arrow_back_ios, size: 25), onPressed: () => Navigator.of(context).pop()),
                 ),
               ],
             ),
