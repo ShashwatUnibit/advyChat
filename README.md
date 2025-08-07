@@ -36,6 +36,7 @@ Predefined responses you can instantly send:
 ## Web Integration via CDN (Optional)
 If you're not using Flutter, you can also embed Advy Chat on any HTML site using the CDN method:
 ### Step 1: Add Script Tag
+
 Place this in the `<head>` tag of your HTML:
 ```html
 <script
@@ -63,7 +64,7 @@ Your live chat will now be visible on the site.
 Add to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  advy_chat: ^1.0.7
+  advy_chat: ^1.0.9
 ```
 Run:
 ```bash
