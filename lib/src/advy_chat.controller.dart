@@ -31,24 +31,37 @@ class AdvyChatController extends GetxController {
             decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15)), color: Colors.white),
             child: Stack(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 30, bottom: 15),
+                ClipRRect(
+                  borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
                   child: InAppWebView(
                     initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("http://192.168.1.43:5173/?productKey=$productKey&userName=$userName&mobile=$mobileNumber"))),
                     onLoadStart: (controller, url) {
                       LoadingPage.show();
                     },
-                    onLoadStop: (controller, url) {
-                      LoadingPage.close();
+                    onLoadStop: (controller, url) async {
+                      final html = await controller.evaluateJavascript(source: "document.body.innerText");
+                      if (html.contains("Your chat has ended")) {
+                        Navigator.of(Get.context!).pop(); // or other Flutter action
+                      }
                     },
                     onWebViewCreated: (controller) {
                       InAppWebViewController;
                     },
+                    shouldOverrideUrlLoading: (controller, navAction) async {
+                      final uri = navAction.request.url;
+                      final url = uri.toString();
+
+                      if (url.contains("chat-ended") || url.contains("goodbye")) {
+                        Navigator.of(Get.context!).pop();
+                        return NavigationActionPolicy.CANCEL;
+                      }
+                      return NavigationActionPolicy.ALLOW;
+                    },
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
-                  child: IconButton(icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.of(context).pop()),
+                  padding: EdgeInsets.only(left: Get.width - 65, top: Get.height - 130),
+                  child: IconButton(padding: EdgeInsets.zero, icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.of(context).pop()),
                 ),
               ],
             ),
