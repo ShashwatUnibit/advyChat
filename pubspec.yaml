@@ -1,6 +1,6 @@
 name: advy_chat
 description: "Advy chat allows user to get support from any application which is using this package."
-version: 1.0.7
+version: 1.0.8
 homepage: https://github.com/your-username/advy_chat
 repository: https://github.com/your-username/advy_chat
 issue_tracker: https://github.com/your-username/advy_chat/issues

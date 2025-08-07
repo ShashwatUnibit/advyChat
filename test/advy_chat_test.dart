@@ -5,7 +5,7 @@ void main() {
   runApp(
     MaterialApp(
       home: Scaffold(
-        body: AdvyWidget(userName: 'Shashwat', mobileNumber: 'Srivastava'),
+        body: AdvyWidget(userName: 'Shashwat', mobileNumber: 'Srivastava', productKey: 'skajfd;laskjf;adlskfj;asd',),
       ),
     ),
   );
