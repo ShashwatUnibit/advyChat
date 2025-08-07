@@ -51,7 +51,7 @@ class AdvyChatController extends GetxController {
                       final uri = navAction.request.url;
                       final url = uri.toString();
 
-                      if (url.contains("chat-ended") || url.contains("goodbye")) {
+                      if (url.contains("chat-ended") || url.contains("https://chat-sdk.advy.me/")) {
                         Navigator.of(Get.context!).pop();
                         return NavigationActionPolicy.CANCEL;
                       }
