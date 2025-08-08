@@ -64,7 +64,7 @@ Your live chat will now be visible on the site.
 Add to your `pubspec.yaml`:
 ```yaml
 dependencies:
-  advy_chat: ^1.1.3
+  advy_chat: ^1.1.4
 ```
 Run:
 ```bash
