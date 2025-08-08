@@ -8,7 +8,7 @@ class AdvyChatController extends GetxController {
   String productKey = "productKey";
   late bool release;
 
-  Rx<Offset> position = Offset(Get.width - 65, Get.height - 130).obs;
+  Rx<Offset> position = Offset(Get.width - 65, Get.height - 180).obs;
 
   void onButtonClick() {
     if (productKey == "productKey" || productKey.isEmpty) {
