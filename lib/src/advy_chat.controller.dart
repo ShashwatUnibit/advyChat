@@ -1,4 +1,3 @@
-import 'package:advy_chat/src/loading.helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:get/get.dart';
@@ -57,8 +56,20 @@ class AdvyChatController extends GetxController {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: Get.width - 65, top: Get.height - 130),
-                  child: IconButton(padding: EdgeInsets.zero, icon: const Icon(Icons.close, size: 20), onPressed: () => Navigator.of(context).pop()),
+                  padding: EdgeInsets.only(left: Get.width - 35, top: Get.height - 35),
+                  child: MaterialButton(
+                    padding: EdgeInsets.zero,
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: VisualDensity.compact,
+                    minWidth: 0,
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text(
+                      "Close",
+                      style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 ),
               ],
             ),
