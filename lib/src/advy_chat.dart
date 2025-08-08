@@ -3,19 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AdvyWidget extends StatelessWidget {
-  const AdvyWidget({super.key, required this.userName, required this.mobileNumber, required this.productKey});
+  const AdvyWidget({
+    super.key,
+    required this.userName,
+    required this.mobileNumber,
+    required this.productKey,
+    this.buttonColor = Colors.blue,
+    this.buttonBorderColor = Colors.black,
+    this.iconColor = Colors.white,
+    this.borderWidth = 1,
+    this.buttonSize = 50,
+    this.iconSize = 20,
+    this.release = true,
+    this.icon = Icons.chat,
+  });
 
   final String userName;
   final String mobileNumber;
   final String productKey;
-  final Color buttonColor = Colors.blue;
-  final Color buttonBorderColor = Colors.black;
-  final Color iconColor = Colors.white;
-  final double borderWidth = 1;
-  final double buttonSize = 50;
-  final double iconSize = 20;
-  final bool release = true;
-  final IconData icon = Icons.chat;
+  final Color buttonColor;
+  final Color buttonBorderColor;
+  final Color iconColor;
+  final double borderWidth;
+  final double buttonSize;
+  final double iconSize;
+  final bool release;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
