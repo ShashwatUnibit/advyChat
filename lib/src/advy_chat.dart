@@ -14,6 +14,7 @@ class AdvyWidget extends StatelessWidget {
   final double borderWidth = 1;
   final double buttonSize = 50;
   final double iconSize = 20;
+  final bool release = true;
   final IconData icon = Icons.chat;
 
   @override
@@ -22,6 +23,7 @@ class AdvyWidget extends StatelessWidget {
     controller.userName = userName;
     controller.mobileNumber = mobileNumber;
     controller.productKey = productKey;
+    controller.release = release;
     return Obx(
       () => Padding(
         padding: EdgeInsetsGeometry.only(left: controller.position.value.dx, top: controller.position.value.dy),

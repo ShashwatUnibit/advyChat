@@ -1,8 +1,8 @@
-# Advy Chat – Flutter Package for Real-Time Support
+### Advy Chat – Flutter Package for Real-Time Support
 **Advy Chat** is a Flutter package that enables you to integrate a fully functional, real-time chat interface into your mobile or web applications. It connects seamlessly with the **Advy Admin Dashboard** where you can manage conversations, agents, feedback, and more.
 :link: **Platform:** [chat.advy.me](https://chat.advy.me)
 ---
-## Flutter Widget Features
+### Flutter Widget Features
 - Plug-and-play integration via `AdvyWidget`
 - Real-time chat with backend connectivity
 - Responsive and mobile-friendly design

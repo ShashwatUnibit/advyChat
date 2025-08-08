@@ -6,6 +6,7 @@ class AdvyChatController extends GetxController {
   String userName = "UserName";
   String mobileNumber = "MobileNumber";
   String productKey = "productKey";
+  bool release = true;
 
   Rx<Offset> position = Offset(Get.width - 65, Get.height - 130).obs;
 
@@ -33,7 +34,9 @@ class AdvyChatController extends GetxController {
                 ClipRRect(
                   borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
                   child: InAppWebView(
-                    initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("http://192.168.1.43:5173/?productKey=$productKey&userName=$userName&mobile=$mobileNumber"))),
+                    initialUrlRequest: URLRequest(
+                      url: WebUri.uri(Uri.parse("${release ? "https://chat-sdk.advy.me/?productKey=" : "http://192.168.1.43:5173/?productKey="}$productKey&userName=$userName&mobile=$mobileNumber")),
+                    ),
                     onLoadStop: (controller, url) async {
                       final html = await controller.evaluateJavascript(source: "document.body.innerText");
                       if (html.contains("Your chat has ended")) {
