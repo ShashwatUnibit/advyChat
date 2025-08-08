@@ -35,9 +35,6 @@ class AdvyChatController extends GetxController {
                   borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
                   child: InAppWebView(
                     initialUrlRequest: URLRequest(url: WebUri.uri(Uri.parse("http://192.168.1.43:5173/?productKey=$productKey&userName=$userName&mobile=$mobileNumber"))),
-                    onLoadStart: (controller, url) {
-                      LoadingPage.show();
-                    },
                     onLoadStop: (controller, url) async {
                       final html = await controller.evaluateJavascript(source: "document.body.innerText");
                       if (html.contains("Your chat has ended")) {
