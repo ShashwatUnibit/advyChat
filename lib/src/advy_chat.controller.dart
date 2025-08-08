@@ -6,7 +6,7 @@ class AdvyChatController extends GetxController {
   String userName = "UserName";
   String mobileNumber = "MobileNumber";
   String productKey = "productKey";
-  bool release = true;
+  late bool release;
 
   Rx<Offset> position = Offset(Get.width - 65, Get.height - 130).obs;
 
@@ -35,7 +35,7 @@ class AdvyChatController extends GetxController {
                   borderRadius: BorderRadiusGeometry.all(Radius.circular(15)),
                   child: InAppWebView(
                     initialUrlRequest: URLRequest(
-                      url: WebUri.uri(Uri.parse("${release ? "https://chat-sdk.advy.me/?productKey=" : "http://192.168.1.43:5173/?productKey="}$productKey&userName=$userName&mobile=$mobileNumber")),
+                      url: WebUri.uri(Uri.parse("${release ? "https://chat-sdk.advy.me" : "http://192.168.1.43:5173"}/?productKey=$productKey&userName=$userName&mobile=$mobileNumber")),
                     ),
                     onLoadStop: (controller, url) async {
                       final html = await controller.evaluateJavascript(source: "document.body.innerText");
