@@ -56,7 +56,7 @@ class AdvyChatController extends GetxController {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: Get.width - 35, top: Get.height - 35),
+                  padding: EdgeInsets.only(left: Get.width - 40, top: Get.height - 55),
                   child: MaterialButton(
                     padding: EdgeInsets.zero,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
