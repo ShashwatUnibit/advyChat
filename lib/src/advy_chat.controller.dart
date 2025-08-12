@@ -37,6 +37,15 @@ class AdvyChatController extends GetxController {
                     initialUrlRequest: URLRequest(
                       url: WebUri.uri(Uri.parse("${release ? "https://chat-sdk.advy.me" : "http://192.168.1.43:5173"}/?productKey=$productKey&userName=$userName&mobile=$mobileNumber")),
                     ),
+                    initialSettings: InAppWebViewSettings(
+                      mediaPlaybackRequiresUserGesture: false,
+                    ),
+                    onPermissionRequest: (controller, request) async {
+                      return PermissionResponse(
+                        resources: request.resources,
+                        action: PermissionResponseAction.GRANT,
+                      );
+                    },
                     onLoadStop: (controller, url) async {
                       final html = await controller.evaluateJavascript(source: "document.body.innerText");
                       if (html.contains("Your chat has ended")) {
