@@ -16,6 +16,8 @@ class AdvyWidget extends StatelessWidget {
     this.iconSize = 20,
     this.release = true,
     this.icon = Icons.chat,
+    this.startXPosition = 20,
+    this.startYPosition = 20,
   });
 
   final String userName;
@@ -27,6 +29,8 @@ class AdvyWidget extends StatelessWidget {
   final double borderWidth;
   final double buttonSize;
   final double iconSize;
+  final double startXPosition;
+  final double startYPosition;
   final bool release;
   final IconData icon;
 
@@ -37,8 +41,9 @@ class AdvyWidget extends StatelessWidget {
     controller.mobileNumber = mobileNumber;
     controller.productKey = productKey;
     controller.release = release;
+    controller.position = Offset(startXPosition, startYPosition).obs;
     return Obx(
-      () => Padding(
+          () => Padding(
         padding: EdgeInsetsGeometry.only(left: controller.position.value.dx, top: controller.position.value.dy),
         child: GestureDetector(
           onPanUpdate: (details) {
