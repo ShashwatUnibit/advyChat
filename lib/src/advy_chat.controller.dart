@@ -46,24 +46,8 @@ class AdvyChatController extends GetxController {
                         action: PermissionResponseAction.GRANT,
                       );
                     },
-                    onLoadStop: (controller, url) async {
-                      final html = await controller.evaluateJavascript(source: "document.body.innerText");
-                      if (html.contains("Your chat has ended")) {
-                        Navigator.of(Get.context!).pop(); // or other Flutter action
-                      }
-                    },
                     onWebViewCreated: (controller) {
                       InAppWebViewController;
-                    },
-                    shouldOverrideUrlLoading: (controller, navAction) async {
-                      final uri = navAction.request.url;
-                      final url = uri.toString();
-
-                      if (url.contains("chat-ended") || url.contains("https://chat-sdk.advy.me/")) {
-                        Navigator.of(Get.context!).pop();
-                        return NavigationActionPolicy.CANCEL;
-                      }
-                      return NavigationActionPolicy.ALLOW;
                     },
                   ),
                 ),
