@@ -16,8 +16,8 @@ class AdvyWidget extends StatelessWidget {
     this.iconSize = 20,
     this.release = true,
     this.icon = Icons.chat,
-    this.startXPosition = 20,
-    this.startYPosition = 20,
+    this.useChatIcon = false,
+    this.userWidget,
   });
 
   final String userName;
@@ -29,10 +29,10 @@ class AdvyWidget extends StatelessWidget {
   final double borderWidth;
   final double buttonSize;
   final double iconSize;
-  final double startXPosition;
-  final double startYPosition;
   final bool release;
   final IconData icon;
+  final bool useChatIcon;
+  final Widget? userWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -41,35 +41,43 @@ class AdvyWidget extends StatelessWidget {
     controller.mobileNumber = mobileNumber;
     controller.productKey = productKey;
     controller.release = release;
-    controller.position = Offset(startXPosition, startYPosition).obs;
-    return Obx(
-          () => Padding(
-        padding: EdgeInsetsGeometry.only(left: controller.position.value.dx, top: controller.position.value.dy),
-        child: GestureDetector(
-          onPanUpdate: (details) {
-            controller.updatePosition(details.delta);
-          },
-          child: MaterialButton(
+    return useChatIcon
+        ? Obx(
+            () => Padding(
+              padding: EdgeInsetsGeometry.only(left: controller.position.value.dx, top: controller.position.value.dy),
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  controller.updatePosition(details.delta);
+                },
+                child: MaterialButton(
+                  onPressed: controller.onButtonClick,
+                  padding: EdgeInsets.zero,
+                  visualDensity: VisualDensity.compact,
+                  minWidth: 0,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  child: Container(
+                    width: buttonSize,
+                    height: buttonSize,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(100)),
+                      color: buttonColor,
+                      border: Border.all(color: buttonBorderColor, width: borderWidth),
+                    ),
+                    child: Icon(icon, color: iconColor, size: iconSize),
+                  ),
+                ),
+              ),
+            ),
+          )
+        : MaterialButton(
             onPressed: controller.onButtonClick,
             padding: EdgeInsets.zero,
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
             visualDensity: VisualDensity.compact,
             minWidth: 0,
-            splashColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            child: Container(
-              width: buttonSize,
-              height: buttonSize,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(100)),
-                color: buttonColor,
-                border: Border.all(color: buttonBorderColor, width: borderWidth),
-              ),
-              child: Icon(icon, color: iconColor, size: iconSize),
-            ),
-          ),
-        ),
-      ),
-    );
+            child: userWidget ?? SizedBox.shrink(),
+          );
   }
 }
