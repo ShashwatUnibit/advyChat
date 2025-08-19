@@ -51,8 +51,9 @@ class AdvyChatController extends GetxController {
                     },
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: Get.width - 40, top: Get.height - 45),
+                Positioned(
+                  right: 10,
+                  bottom: 0,
                   child: MaterialButton(
                     padding: EdgeInsets.zero,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -63,7 +64,11 @@ class AdvyChatController extends GetxController {
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(
                       "Close",
-                      style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
                   ),
                 ),
