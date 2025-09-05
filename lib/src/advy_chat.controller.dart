@@ -37,14 +37,18 @@ class AdvyChatController extends GetxController {
                     initialUrlRequest: URLRequest(
                       url: WebUri.uri(Uri.parse("${release ? "https://chat-sdk.advy.me" : "http://192.168.1.43:5173"}/?productKey=$productKey&userName=$userName&mobile=$mobileNumber")),
                     ),
-                    initialSettings: InAppWebViewSettings(
-                      mediaPlaybackRequiresUserGesture: false,
-                    ),
                     onPermissionRequest: (controller, request) async {
-                      return PermissionResponse(
-                        resources: request.resources,
-                        action: PermissionResponseAction.GRANT,
-                      );
+                      return PermissionResponse(resources: request.resources, action: PermissionResponseAction.GRANT);
+                    },
+                    initialSettings: InAppWebViewSettings(javaScriptEnabled: true, mediaPlaybackRequiresUserGesture: false, allowsInlineMediaPlayback: true, useShouldOverrideUrlLoading: true),
+                    onLoadStart: (controller, url) {
+                      print("Page started loading: $url");
+                    },
+                    onLoadStop: (controller, url) {
+                      print("Page finished loading: $url");
+                    },
+                    onProgressChanged: (controller, progress) {
+                      print("Loading progress: $progress%");
                     },
                     onWebViewCreated: (controller) {
                       InAppWebViewController;
@@ -64,11 +68,7 @@ class AdvyChatController extends GetxController {
                     onPressed: () => Navigator.of(context).pop(),
                     child: Text(
                       "Close",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                      ),
+                      style: TextStyle(color: Colors.red, fontSize: 12, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
